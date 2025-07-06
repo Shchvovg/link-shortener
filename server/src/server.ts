@@ -59,7 +59,7 @@ app.post('/api/shorten', async (req, res) => {
 
 async function startServer() {
     try{
-        await connectToDatabase(mongoUri);
+        await connectToDatabase(mongoUri as string);
         app.listen(PORT, () => {
             console.log(`Server is running on ${mongoUri}:${PORT}`);
         });
