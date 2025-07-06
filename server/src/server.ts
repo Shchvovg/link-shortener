@@ -11,6 +11,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5050;
+const mongoUri = process.env.MONGO_URI
 
 app.use(cors());
 app.use(express.json());
@@ -58,9 +59,9 @@ app.post('/api/shorten', async (req, res) => {
 
 async function startServer() {
     try{
-        await connectToDatabase();
+        await connectToDatabase(mongoUri);
         app.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
+            console.log(`Server is running on ${mongoUri}:${PORT}`);
         });
     } catch (e) {
         console.error('Failed to start server: ', e);
