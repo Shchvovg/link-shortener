@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import ShortUrlComponent from "./ShortUrlComponent.tsx";
 
+interface UrlFormProps {
+  api_url: string;
+}
 
-function UrlForm () {
+function UrlForm ({ api_url }: UrlFormProps) {
 
-    const API_URL = 'http://localhost:5050/api/shorten';
 
     const [originalUrl, setOriginalUrl] = useState('');
     const [shortUrl, setShortUrl] = useState('');
@@ -17,7 +19,7 @@ function UrlForm () {
 
         console.log(originalUrl);
 
-        const response = await fetch(API_URL, {
+        const response = await fetch(api_url, {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ originalUrl: originalUrl}),
