@@ -1,9 +1,15 @@
 
-function ShortUrlComponent ({shortUrl = 'ssasdasd'}) {
+function ShortUrlComponent ({shortUrl = ''}) {
+    const BASE_URL: string = import.meta.env.VITE_BASE_URL;
+
+    async function handleButtonClick() {
+        await navigator.clipboard.writeText(shortUrl);
+    }
+
     return(
         <div className="short-url">
-            <label>Your URL: {shortUrl}</label>
-            <button>Copy</button>
+            <label>Your URL: {BASE_URL+shortUrl}</label>
+            <button onClick={() => handleButtonClick()}>Copy</button>
         </div>
     );
 }
