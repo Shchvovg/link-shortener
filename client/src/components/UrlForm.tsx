@@ -20,7 +20,7 @@ function UrlForm ({ url, port }: UrlFormProps) {
 
         console.log(originalUrl);
 
-        const response = await fetch(url+':'+port+'/api/shorten', {
+        const response = await fetch(url+'/api/shorten', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ originalUrl: originalUrl}),
