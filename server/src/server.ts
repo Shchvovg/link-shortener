@@ -37,6 +37,8 @@ app.get('/:shortCode', async (req, res) => {
 app.post('/api/shorten', async (req, res) => {
     const { originalUrl } = req.body;
 
+    console.log('Got request');
+
     if(!originalUrl){
         res.status(400).json({ message: 'Original URL is required' });
         return; 

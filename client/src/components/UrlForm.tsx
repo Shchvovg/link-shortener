@@ -6,7 +6,7 @@ interface UrlFormProps {
   port: number;
 }
 
-function UrlForm ({ url, port = 5173 }: UrlFormProps) {
+function UrlForm ({ url, port }: UrlFormProps) {
 
 
     const [originalUrl, setOriginalUrl] = useState('');
