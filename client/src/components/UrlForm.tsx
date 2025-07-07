@@ -3,9 +3,10 @@ import ShortUrlComponent from "./ShortUrlComponent.tsx";
 
 interface UrlFormProps {
   url: string;
+  port: number;
 }
 
-function UrlForm ({ url }: UrlFormProps) {
+function UrlForm ({ url, port = 5173 }: UrlFormProps) {
 
 
     const [originalUrl, setOriginalUrl] = useState('');
@@ -19,7 +20,7 @@ function UrlForm ({ url }: UrlFormProps) {
 
         console.log(originalUrl);
 
-        const response = await fetch(url+'/api/shorten', {
+        const response = await fetch(url+':'+port+'/api/shorten', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ originalUrl: originalUrl}),
