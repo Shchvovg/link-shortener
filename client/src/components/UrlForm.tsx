@@ -3,10 +3,9 @@ import ShortUrlComponent from "./ShortUrlComponent.tsx";
 
 interface UrlFormProps {
   url: string;
-  port: number;
 }
 
-function UrlForm ({ url, port }: UrlFormProps) {
+function UrlForm ({ url }: UrlFormProps) {
 
 
     const [originalUrl, setOriginalUrl] = useState('');
