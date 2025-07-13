@@ -44,9 +44,9 @@ function App() {
             throw new Error(data.error || 'Something went wrong');
         }
 
-        setLatestShortUrl(data.shortUrl);
+        setLatestShortUrl(`${data.originalUrl}/${data.shortCode}`);
 
-        console.log(data.shortUrl);
+        console.log(data.shortCode);
         setLoading(false);
 
         const existingLinkArrayString = localStorage.getItem('linkArray');
@@ -54,7 +54,7 @@ function App() {
         if (existingLinkArrayString) {
           existingLinkArray = JSON.parse(existingLinkArrayString);
         }
-        existingLinkArray.push(data.shortUrl);
+        existingLinkArray.push(data.shortCode);
 
         localStorage.setItem('linkArray', JSON.stringify(existingLinkArray));
 
