@@ -13,7 +13,7 @@ const UrlSchema: Schema = new Schema({
         type: String,
         required: true,
     },
-    shortUrl: {
+    shortCode: {
         type: String,
         required: true,
         unique: true,
