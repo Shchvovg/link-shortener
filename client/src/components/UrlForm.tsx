@@ -1,43 +1,21 @@
 import React, { useState } from "react";
-import ShortUrlComponent from "./ShortUrlComponent.tsx";
 
 interface UrlFormProps {
-  url: string;
+  onShorten: (url: string) => void;
+  loading: boolean;
+  statusMessage: string;
 }
 
-function UrlForm ({ url }: UrlFormProps) {
+function UrlForm ({ onShorten, loading, statusMessage }: UrlFormProps) {
 
 
     const [originalUrl, setOriginalUrl] = useState('');
-    const [shortUrl, setShortUrl] = useState('');
-    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-        setLoading(true);
-
-        console.log(originalUrl);
-
-        const response = await fetch(url+'/api/shorten', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({ originalUrl: originalUrl}),
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-        if (!response.ok) {
-            throw new Error(data.error || 'Something went wrong');
-        }
-
-        setShortUrl(data.shortCode);
-        console.log(data.shortCode);
-        setLoading(false);
-
-        return;
-    }
+    onShorten(originalUrl);
+  };
 
     return(
         <div className="main-container">
@@ -46,15 +24,15 @@ function UrlForm ({ url }: UrlFormProps) {
                 <input 
                     type="url" 
                     placeholder="Enter your URL here..." 
-                    name='originalUrl' value={originalUrl} 
+                    name='originalUrl' 
+                    value={originalUrl} 
                     onChange={(e) => setOriginalUrl(e.target.value)}>
                 </input>
                 <button disabled={loading || originalUrl === ''}>
-                    Shorten!
+                    {loading ? 'Shortening...' : 'Shorten!'}
                 </button>
-                <label className={`status-label ${loading ? 'loading' : ''} ${!loading && shortUrl ? 'completed' : ''}`}>{loading ? 'Shortening...' : 'Shortened!'}</label>
+                <label className={`status-label ${loading ? 'loading' : ''} ${!loading && statusMessage ? 'completed' : ''}`}>{statusMessage}</label>
             </form>
-            {shortUrl && <ShortUrlComponent shortUrl={shortUrl} />}
         </div>
     );
 }

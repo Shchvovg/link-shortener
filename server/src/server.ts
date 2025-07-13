@@ -34,6 +34,23 @@ app.get('/:shortCode', async (req, res) => {
     }
 });
 
+app.post('/api/getLinks', async (req, res) => {
+    const { linkArray } = req.body;
+    try{
+
+    
+        const urls = await Url.find({
+            shortCode: { $in: linkArray}
+        });
+
+        if (urls.length > 0){
+            res.status(201).json(urls);
+        }
+    } catch(error) {
+        res.status(500).json({ message: 'Error finding URLs', error: error});
+    }
+});
+
 app.post('/api/shorten', async (req, res) => {
     const { originalUrl } = req.body;
 
