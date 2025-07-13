@@ -44,7 +44,7 @@ function App() {
             throw new Error(data.error || 'Something went wrong');
         }
 
-        setLatestShortUrl(`${data.originalUrl}/${data.shortCode}`);
+        setLatestShortUrl(data.shortCode);
 
         console.log(data.shortCode);
         setLoading(false);
