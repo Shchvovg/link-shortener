@@ -2,12 +2,7 @@ import { useState } from "react";
 import ShortUrlComponent from "./components/ShortUrlComponent";
 import UrlForm from "./components/UrlForm";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface _linkItem {
-  originalUrl: string,
-  shortUrl: string,
-  clicks: number
-}
+
 
 function App() {
   const API_URL: string = import.meta.env.VITE_API_URL;
