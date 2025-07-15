@@ -7,10 +7,10 @@ function ShortUrlComponent ({shortUrl = ''}) {
     }
 
     return(
-        <div className="short-url">
+        shortUrl && (<div className="short-url">
             <label>Your URL: {BASE_URL+'/'+shortUrl}</label>
             <button onClick={() => handleButtonClick()}>Copy</button>
-        </div>
+        </div>)
     );
 }
 

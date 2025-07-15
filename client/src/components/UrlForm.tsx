@@ -29,7 +29,7 @@ function UrlForm ({ onShorten, loading, statusMessage }: UrlFormProps) {
                     onChange={(e) => setOriginalUrl(e.target.value)}>
                 </input>
                 <button disabled={loading || originalUrl === ''}>
-                    {loading ? 'Shortening...' : 'Shorten!'}
+                    Shorten!
                 </button>
                 <label className={`status-label ${loading ? 'loading' : ''} ${!loading && statusMessage ? 'completed' : ''}`}>{statusMessage}</label>
             </form>

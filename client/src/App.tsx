@@ -51,17 +51,25 @@ function App() {
 
         const existingLinkArrayString = localStorage.getItem('linkArray');
         let existingLinkArray = [];
-        if (existingLinkArrayString) {
-          existingLinkArray = JSON.parse(existingLinkArrayString);
+        try {
+          if (existingLinkArrayString) {
+            existingLinkArray = JSON.parse(existingLinkArrayString);
+          }
+
+        } catch (error) {
+          console.error("Failed to parse linkArray from localStorage: ", error);
         }
         existingLinkArray.push(data.shortCode);
 
+        console.log(existingLinkArray);
+
         localStorage.setItem('linkArray', JSON.stringify(existingLinkArray));
-
+        
         updateSidebar();
-
+        
         return;
     }
+    
 
     const getStatusMessage = () => {
       if (loading) return 'Shortening...';
